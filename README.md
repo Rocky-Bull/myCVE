@@ -1,2 +1,0 @@
-# myCVE
-my cve project
