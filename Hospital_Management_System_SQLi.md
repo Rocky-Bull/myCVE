@@ -12,6 +12,7 @@ hostpital/hms/admin/index.php
 ## describe
 
 **Code analysis**
+
 In the hostpital/hms/admin/index.php file of Hospital Management System, the username and password parameter is obtained, and the SQL statement is concatenated to the SQL statement without filtering the execution, resulting in SQL injection vulnerabilities and login as administrator
 ![image](https://github.com/Rocky-Bull/myCVE/blob/main/images/hmss/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-26%20133407.png)
 ![image](https://github.com/Rocky-Bull/myCVE/blob/main/images/hmss/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-26%20133105.png)
