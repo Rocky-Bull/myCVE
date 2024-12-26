@@ -1,6 +1,6 @@
 
 # Hospital Management System has sql injection in admin login portal
-
+CVE-2024-12969
 ## supplier
 
 https://code-projects.org/hospital-management-system-using-php-source-code/
