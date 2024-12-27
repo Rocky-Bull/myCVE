@@ -1,5 +1,5 @@
 # Hospital Management System in PHP has Stored Cross Site Scripting vulnerability in manage-doctors.php
-
+CVE-2024-12983
 ## supplier
 
 https://code-projects.org/hospital-management-system-using-php-source-code/
